@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.rap.ui.entrypoint">
+      <entrypoint
+            class="org.eclipse.rap.widget.carousel.demo.BookDemo"
+            id="org.eclipse.rap.widget.carousel.entryPoint"
+            parameter="bookstore">
+      </entrypoint>
+   </extension>
+   <extension
+         point="org.eclipse.equinox.http.registry.resources">
+      <resource
+            alias="/carousel"
+            base-name="resources">
+      </resource>
+   </extension>
+
+</plugin>

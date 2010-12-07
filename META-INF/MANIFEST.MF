@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Carousel
+Bundle-SymbolicName: org.eclipse.rap.widget.carousel;singleton:=true
+Bundle-Version: 1.4.0.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.rap.ui;bundle-version="1.4.0",
+ org.eclipse.equinox.http.registry;bundle-version="1.1.0"
+Export-Package: org.eclipse.rap.widget.carousel
+Bundle-Vendor: EclipseSource
