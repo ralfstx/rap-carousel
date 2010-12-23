@@ -17,10 +17,11 @@ import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
 import org.eclipse.swt.browser.ProgressEvent;
 import org.eclipse.swt.browser.ProgressListener;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
 
-public class Carousel extends Browser {
+public class Carousel extends Composite {
   
   private static final String URL = "/carousel/carousel.html";
   private final static String CLICK_FUNCTION = "itemClicked";
@@ -28,11 +29,14 @@ public class Carousel extends Browser {
   private List<CarouselItem> queue;
   private List<CarouselItem> items;
   private boolean wantsToStart;
+  private Browser browser;
 
   public Carousel( Composite parent ) {
     super( parent, SWT.NONE );
-    setUrl( URL );
-    this.addProgressListener( new ProgressListener() {
+    super.setLayout( new FillLayout() );
+    browser = new Browser( this, SWT.NONE );
+    browser.setUrl( URL );
+    browser.addProgressListener( new ProgressListener() {
       public void completed( ProgressEvent event ) {
         loaded = true;
         createBrowserFunctions();
@@ -47,7 +51,7 @@ public class Carousel extends Browser {
   }
 
   private void createBrowserFunctions() {
-    new BrowserFunction( this, CLICK_FUNCTION ) {
+    new BrowserFunction( browser, CLICK_FUNCTION ) {
       @Override
       public Object function( Object[] arguments ) {
         int positionOfItem = ( ( Double )arguments[ 0 ] ).intValue();
@@ -64,7 +68,7 @@ public class Carousel extends Browser {
       String resourceName = carouselItem.getIconResourceName();
       int itemNumber = items.indexOf( carouselItem );
       String script = "addListItem('" + resourceName + "', " + itemNumber + ");";
-      evaluate( script );
+      browser.evaluate( script );
     } else {
       addItemToQueue( carouselItem );
     }
@@ -100,7 +104,7 @@ public class Carousel extends Browser {
    */
   public void render() {
     if( loaded ) {
-      evaluate( "render();" );
+      browser.evaluate( "render();" );
     } else {
       wantsToStart = true;
     }
