@@ -12,7 +12,8 @@ package org.eclipse.rap.widget.carousel;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.rwt.internal.resources.ResourceManager;
+import org.eclipse.rwt.RWT;
+import org.eclipse.rwt.resources.IResourceManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -30,7 +31,8 @@ public class CarouselItem {
     this.parent = parent;
     // It's not nice, but the only way to get the registered resource's path
     String imagePath = icon.internalImage.getResourceName();
-    resourceName = "/" + ResourceManager.getInstance().getLocation( imagePath );
+    IResourceManager resourceManager = RWT.getResourceManager();
+    resourceName = "/" + resourceManager.getLocation( imagePath );
     parent.internalRegisterItem( this );
   }
   
