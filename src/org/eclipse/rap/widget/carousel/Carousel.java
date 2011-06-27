@@ -12,6 +12,7 @@ package org.eclipse.rap.widget.carousel;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.rwt.RWT;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
@@ -35,7 +36,7 @@ public class Carousel extends Composite {
     super( parent, SWT.NONE );
     super.setLayout( new FillLayout() );
     browser = new Browser( this, SWT.NONE );
-    browser.setUrl( URL );
+    browser.setUrl( RWT.getRequest().getContextPath() + URL );
     browser.addProgressListener( new ProgressListener() {
       public void completed( ProgressEvent event ) {
         loaded = true;

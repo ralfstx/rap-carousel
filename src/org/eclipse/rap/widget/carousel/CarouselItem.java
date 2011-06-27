@@ -1,18 +1,21 @@
 /******************************************************************************* 
-* Copyright (c) 2010 EclipseSource and others. All rights reserved. This
-* program and the accompanying materials are made available under the terms of
-* the Eclipse Public License v1.0 which accompanies this distribution, and is
-* available at http://www.eclipse.org/legal/epl-v10.html
+* Copyright (c) 2010, 2011 EclipseSource and others.
+* All rights reserved. This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
 *
 * Contributors:
-*   EclipseSource - initial API and implementation
+*    EclipseSource - initial API and implementation
 *******************************************************************************/ 
 package org.eclipse.rap.widget.carousel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.rwt.internal.resources.ResourceManager;
+import org.eclipse.rwt.RWT;
+import org.eclipse.rwt.internal.engine.RWTFactory;
+import org.eclipse.rwt.resources.IResourceManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -29,8 +32,10 @@ public class CarouselItem {
   public CarouselItem( Carousel parent, Image icon ) {
     this.parent = parent;
     // It's not nice, but the only way to get the registered resource's path
+    String contextPath = RWT.getRequest().getContextPath();
+    IResourceManager resourceManager = RWTFactory.getResourceManagerProvider().getResourceManager();
     String imagePath = icon.internalImage.getResourceName();
-    resourceName = "/" + ResourceManager.getInstance().getLocation( imagePath );
+    resourceName = contextPath + "/" + resourceManager.getLocation( imagePath );
     parent.internalRegisterItem( this );
   }
   

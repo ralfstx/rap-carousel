@@ -9,3 +9,5 @@ Require-Bundle: org.eclipse.rap.ui;bundle-version="1.4.0",
 Export-Package: org.eclipse.rap.widget.carousel
 Bundle-Vendor: EclipseSource
 Bundle-ActivationPolicy: lazy
+Import-Package: javax.servlet;version="2.5.0",
+ javax.servlet.http;version="2.5.0"
