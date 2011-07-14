@@ -1,4 +1,4 @@
-/******************************************************************************* 
+/*******************************************************************************
 * Copyright (c) 2010, 2011 EclipseSource and others.
 * All rights reserved. This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
 *
 * Contributors:
 *    EclipseSource - initial API and implementation
-*******************************************************************************/ 
+*******************************************************************************/
 package org.eclipse.rap.widget.carousel;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Event;
 
 
 public class CarouselItem {
-  
+
   private String resourceName;
   private List<SelectionListener> listeners;
   private Carousel parent;
@@ -33,16 +33,16 @@ public class CarouselItem {
     this.parent = parent;
     // It's not nice, but the only way to get the registered resource's path
     String contextPath = RWT.getRequest().getContextPath();
-    IResourceManager resourceManager = RWTFactory.getResourceManagerProvider().getResourceManager();
+    IResourceManager resourceManager = RWTFactory.getResourceManager();
     String imagePath = icon.internalImage.getResourceName();
     resourceName = contextPath + "/" + resourceManager.getLocation( imagePath );
     parent.internalRegisterItem( this );
   }
-  
+
   String getIconResourceName() {
     return resourceName;
   }
-  
+
   public void addSelectionListener( SelectionListener listener ) {
     lazyInitListeners();
     listeners.add( listener );
@@ -53,7 +53,7 @@ public class CarouselItem {
       listeners = new ArrayList<SelectionListener>();
     }
   }
-  
+
   public void removeSelectionListener( SelectionListener listener ) {
     if( listeners != null ) {
       listeners.remove( listener );
