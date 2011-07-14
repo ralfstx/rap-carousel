@@ -43,7 +43,7 @@ public class BookDemo implements IEntryPoint {
     shell.setLayout( new FormLayout() );
     Carousel carousel = new Carousel( shell );
     layoutCarousel( carousel );
-    addBooks( carousel, 8 );
+    addBooks( carousel );
     createControls( shell, carousel );
     carousel.render();   
     shell.open();
@@ -83,7 +83,7 @@ public class BookDemo implements IEntryPoint {
     fdBookBrowser.bottom = new FormAttachment( 100 );
   }
 
-  private void addBooks( Carousel parent, int count ) {
+  private void addBooks( Carousel parent ) {
     Book[] books = store.getBooks();
     for( int i = 0; i < books.length; i++ ) {
       Book book = books[ i ];
@@ -98,7 +98,7 @@ public class BookDemo implements IEntryPoint {
       public void widgetSelected( SelectionEvent e ) {
         bookTitle.setText( book.getTitle() );
         bookBrowser.setUrl( book.getUrl() );
-      };
+      }
     } );
   }
 
